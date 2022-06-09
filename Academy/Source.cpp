@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 using std::cin;
 using std::cout;
@@ -131,7 +131,7 @@ public:
 	void print()const
 	{
 		Human::print();
-		cout << "Ñïåöèàëüíîñòü: " << speciality + " " + "Ãðóïïà: " + group << " " << "Êóðñ: " << year << " " << "Ðåéòèíã: " << rating << " " << "Ïîñåùàåìîñòü: " << attendance << endl;
+		cout << "Ð¡Ð¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ: " << speciality + " " + "Ð“Ñ€ÑƒÐ¿Ð¿Ð°: " + group << " " << "ÐšÑƒÑ€Ñ: " << year << " " << "Ð ÐµÐ¹Ñ‚Ð¸Ð½Ð³: " << rating << " " << "ÐŸÐ¾ÑÐµÑ‰Ð°ÐµÐ¼Ð¾ÑÑ‚ÑŒ: " << attendance << endl;
 	}
 };
 
@@ -175,13 +175,13 @@ public:
 	/*void print()const
 	{
 		Human::print();
-		cout << "Ñïåöèàëüíîñòü: " << speciality + " " << "Îïûò: " << experience << endl;
+		cout << "Ð¡Ð¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ: " << speciality + " " << "ÐžÐ¿Ñ‹Ñ‚: " << experience << endl;
 	}*/
 
 	ostream& print(ostream& os)const
 	{
 		Human::print();
-		return os << "ñïåöèàëüíîñòü: " << speciality << ", îïûò ïðåïîäàâàíèÿ: "  << experience << " ëåò.";
+		return os << "ÑÐ¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ: " << speciality << ", Ð¾Ð¿Ñ‹Ñ‚ Ð¿Ñ€ÐµÐ¿Ð¾Ð´Ð°Ð²Ð°Ð½Ð¸Ñ: "  << experience << " Ð»ÐµÑ‚.";
 		//os << speciality;
 		//os << right;
 		//os << experience << "y";
@@ -226,7 +226,7 @@ public:
 	void print()const
 	{
 		Student::print();
-		cout << "Òåìà äèïëîìà: " << diplom << endl;
+		cout << "Ð¢ÐµÐ¼Ð° Ð´Ð¸Ð¿Ð»Ð¾Ð¼Ð°: " << diplom << endl;
 	}
 };
 
