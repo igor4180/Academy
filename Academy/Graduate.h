@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<iostream>
 using namespace std;
 using std::cin;
@@ -41,6 +41,6 @@ public:
 	void print()const
 	{
 		Student::print();
-		cout << "Òåìà äèïëîìà: " << diplom << endl;
+		cout << "Ð¢ÐµÐ¼Ð° Ð´Ð¸Ð¿Ð»Ð¾Ð¼Ð°: " << diplom << endl;
 	}
 };
