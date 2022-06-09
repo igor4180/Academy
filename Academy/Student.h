@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<iostream>
 using namespace std;
 using std::cin;
@@ -76,6 +76,6 @@ public:
 	void print()const
 	{
 		Human::print();
-		cout << "Ñïåöèàëüíîñòü: " << speciality + " " + "Ãðóïïà: " + group << " " << "Êóðñ: " << year << " " << "Ðåéòèíã: " << rating << " " << "Ïîñåùàåìîñòü: " << attendance << endl;
+		cout << "Ð¡Ð¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ÑÑ‚ÑŒ: " << speciality + " " + "Ð“Ñ€ÑƒÐ¿Ð¿Ð°: " + group << " " << "ÐšÑƒÑ€Ñ: " << year << " " << "Ð ÐµÐ¹Ñ‚Ð¸Ð½Ð³: " << rating << " " << "ÐŸÐ¾ÑÐµÑ‰Ð°ÐµÐ¼Ð¾ÑÑ‚ÑŒ: " << attendance << endl;
 	}
 };
