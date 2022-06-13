@@ -9,6 +9,38 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+std::ostream& operator<<(std::ostream& os, const Human& obj)
+{
+	return os << obj.get_last_name()
+		<< " " << obj.get_first_name()
+		<< " " << obj.get_age() << " years";
+}
+
+
+std::ostream& operator<<(std::ostream& os, const Student& obj)
+{
+	//os << (Human&)obj;
+	return os << (Human&)obj
+		<< " " << obj.get_speciality()
+		<< " " << obj.get_group()
+		<< " " << obj.get_year()
+		<< " " << obj.get_rating()
+		<< " " << obj.get_attendance();
+}
+
+std::ostream& operator<<(std::ostream& os, const Teacher& obj)
+{
+	return os << (Human&)obj
+		<< " " << obj.get_speciality()
+		<< " " << obj.get_experience();
+}
+
+std::ostream& operator<<(std::ostream& os, const Graduate& obj)
+{
+	return os << (Student&)obj << " " << obj.get_diplom();
+}
+
+
 //#define INHERITANCE_CHECK
 
 void main()
@@ -41,7 +73,18 @@ void main()
 
 	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
 	{
-		group[i]->print();
-		cout << "-------------------------------------------------\n";
+		cout << typeid(*group[i]).name() << endl;
+		//group[i]->print();
+		//cout << *group[i] << endl;
+		if (typeid(*group[i]) == typeid(Teacher))cout << *dynamic_cast<Teacher*>(group[i]) << endl;
+		if (typeid(*group[i]) == typeid(Student))cout << *dynamic_cast<Student*>(group[i]) << endl;
+		if (typeid(*group[i]) == typeid(Graduate))cout << *dynamic_cast<Graduate*>(group[i]) << endl;
+		//dynamic_cast<DerivedClass*>(Basepointer) - преобразует указатель на базовый класс в указатель на дочерний класс (down_cast)
+	}
+	cout << "-------------------------------------------------\n";
+
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++)
+	{
+		delete group[i];
 	}
 }
