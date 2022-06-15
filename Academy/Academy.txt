@@ -1,0 +1,6 @@
+Pinkman Jessie      23 Chemistry           WW_220   191.2095.00
+White Walter        50Chemistry 25
+Schreder Hank       40 Criminalistics      WW_220   595.0080.00How to catch Heisenberg
+Vercetti Tomas      30 Theft               Vice     390.0085.00
+Diaz Ricardo        50Weapons disribution 20
+Einstein Albert     143Astronomy 100
