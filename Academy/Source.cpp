@@ -65,7 +65,10 @@ public:
 	{
 		ofs.width(20);
 		ofs << std::left;
-		ofs << last_name + " " + first_name << "" << age;
+		ofs << last_name + " " + first_name;
+		ofs.width(5);
+		ofs << std::right;
+		ofs << age;
 		return ofs;
 	}
 };
@@ -153,19 +156,25 @@ public:
 		Human::print(os);
 		return os << "Специальность: " << speciality + " " + "Группа: " + group << " " << "Курс: " << year << " " << "Рейтинг: " << rating << " " << "Посещаемость: " << attendance << endl;
 	}
-std::ofstream& print(std::ofstream& ofs)const
-    {
-	Human::print(ofs) << " ";
-	ofs.width(20);
-	ofs << std::left;
-	ofs << speciality;
-	ofs.width(8);
-	ofs << group << " " << year;
-	ofs<<std::right;
-	ofs << std::setprecision(2) << std::fixed;
-	ofs << rating <<  attendance;
-	return ofs;
-    }
+	std::ofstream& print(std::ofstream& ofs)const
+	{
+		Human::print(ofs) << " ";
+		ofs.width(20);
+		ofs << std::left;
+		ofs << speciality;
+		ofs.width(8);
+		ofs << group;
+		ofs.width(2);
+		ofs << std::right;
+		ofs << year;
+		ofs.width(8);
+		//ofs << std::right;
+		ofs << std::setprecision(2) << std::fixed;
+		ofs << rating;
+		ofs.width(8);
+		ofs << attendance;
+		return ofs;
+	}
 };
 
 class Teacher :public Human
@@ -207,14 +216,20 @@ public:
 	//					Methods:
 	std::ostream& print(std::ostream& os)const
 	{
-		Human::print(os);
+		Human::print(os) << " ";
 		return os << "Специальность: " << speciality + " " << "Опыт: " << experience << endl;
 	}
 
 	std::ofstream& print(std::ofstream& ofs)const
 	{
-		Human::print(ofs);
-		ofs << speciality << " " << experience;
+		Human::print(ofs) << " ";
+		ofs.width(25);
+		ofs << std::left;
+		ofs << speciality;
+		ofs.width(5);
+		ofs << std::right;
+		ofs << experience;
+		ofs << std::left;
 		return ofs;
 	}
 };
@@ -259,7 +274,8 @@ public:
 	}
 	std::ofstream& print(std::ofstream& ofs)const
 	{
-		Student::print(ofs) << diplom;
+		Student::print(ofs) << " " << diplom;
+		//ofs << left << " " << diplom;
 		return ofs;
 	}
 };
@@ -301,9 +317,9 @@ void main()
 		//group[i]->print();
 		cout << *group[i] << endl;
 		cout << "-------------------------------------------------\n";
-		
+
 		fout << *group[i] << endl;
-		
+
 	}
 
 	fout.close();

@@ -5,9 +5,12 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+//#define WRITE_TO_FILE
+
 void main()
 {
 	setlocale(LC_ALL, "");
+#ifdef WRITE_TO_FILE
 	const int SIZE = 256;
 	char sz_filename[SIZE] = {}; //sz_ - string zero
 	std::ofstream fout;     //1) Создаем поток
@@ -20,7 +23,7 @@ void main()
 	char sz_contents[SIZE] = {};
 	cout << "Введите содержимое файла:";
 	cin.getline(sz_contents, SIZE);
-	 //fout << "Hello World!\n"; //3) Выводим в поток
+	//fout << "Hello World!\n"; //3) Выводим в поток
 	fout << sz_contents;
 	fout.close();
 	char sz_command[SIZE] = "notepad ";
@@ -38,4 +41,27 @@ void main()
 	//Потоки нужно закрывать, это так же важно, как удалять память.
 	//Сколько раз был вызван метод open(), столько же раз нужно вызвать метод close();
 	//system("notepad File.txt");
+#endif WRITE_TO_FILE
+
+	std::ifstream fin;
+	fin.open("File.txt");
+	if (fin.is_open())
+	{
+		//todo: read file
+		const int n = 256;
+		char buffer[n] = {};
+		while (!fin.eof()) //eof - end of file
+		{
+			//fin >> buffer;
+			fin.getline(buffer, n);
+			cout << buffer << endl;
+		}
+	}
+	else
+	{
+		std::cerr << "Eror: file not found" << endl;
+	}
+	fin.close();
+	system("notepad File.txt");
+
 }
