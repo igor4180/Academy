@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 
 class Vehicle
@@ -17,7 +17,7 @@ class Car :public GroundVehicle
 public:
 	void move()
 	{
-		cout << "Ìàøèíà åäåò íà ÷åòûðåõ êîëåñàõ (êàê ìèíèìóì)" << endl;
+		cout << "ÐœÐ°ÑˆÐ¸Ð½Ð° ÐµÐ´ÐµÑ‚ Ð½Ð° Ñ‡ÐµÑ‚Ñ‹Ñ€ÐµÑ… ÐºÐ¾Ð»ÐµÑÐ°Ñ… (ÐºÐ°Ðº Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼)" << endl;
 	}
 	
 };
@@ -26,7 +26,7 @@ class Bike :public GroundVehicle
 public:
 	void move()
 	{
-		cout << "ìîòîöèêë åäåò íà äâóõ êîëåñàõ" << endl;
+		cout << "Ð¼Ð¾Ñ‚Ð¾Ñ†Ð¸ÐºÐ» ÐµÐ´ÐµÑ‚ Ð½Ð° Ð´Ð²ÑƒÑ… ÐºÐ¾Ð»ÐµÑÐ°Ñ…" << endl;
 	}
 };
 
@@ -41,11 +41,11 @@ class Helicopter :public AirVehicle
 public:
 	void move()
 	{
-		cout << "Âåðòîëåò ëåòèò íà âèíòå" << endl;
+		cout << "Ð’ÐµÑ€Ñ‚Ð¾Ð»ÐµÑ‚ Ð»ÐµÑ‚Ð¸Ñ‚ Ð½Ð° Ð²Ð¸Ð½Ñ‚Ðµ" << endl;
 	}
 	void take_off()
 	{
-		cout << "Âåðòèêàëüíûé âçëåò" << endl;
+		cout << "Ð’ÐµÑ€Ñ‚Ð¸ÐºÐ°Ð»ÑŒÐ½Ñ‹Ð¹ Ð²Ð·Ð»ÐµÑ‚" << endl;
 	}
 };
 
