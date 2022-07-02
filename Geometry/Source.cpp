@@ -338,6 +338,89 @@ namespace Geometry
 			Shape::info();
 		}
 	};
+	class IsoscalesTriangle :public Triangle
+	{
+		double base;
+		double base_angle;
+	public:
+		IsoscalesTriangle
+		(
+			double base, double base_angle,
+			unsigned int start_x, unsigned int start_y, unsigned int line_width, Color color
+		) :Triangle(start_x, start_y, line_width, color)
+		{
+			set_base(base);
+			set_angle(base_angle);
+		}
+		void set_base(double base)
+		{
+			//if (base < 20)base = 20;
+			//if (base > 200)base = 200;
+			this->base = base;
+		}
+		void set_angle(double angle)
+		{
+			//if (angle < 10)angle = 10;
+			//if (angle > 89)angle = 89;
+			this->base_angle = angle;
+		}
+		double get_base()const
+		{
+			return base;
+		}
+		double get_base_angle()const
+		{
+			return base_angle;
+		}
+		double get_side()const
+		{
+			return get_height() / sin(base_angle * M_PI / 180);
+		}
+		double get_height()const
+		{
+			return base / 2 * tan(base_angle * M_PI / 180);
+		}
+		double get_area()const
+		{
+			return base / 2 * get_height();
+		}
+		double get_perimeter()const
+		{
+			return get_side() * 2 + base;
+		}
+		void draw()const
+		{
+			HWND hwnd = GetConsoleWindow();
+			HDC hdc = GetDC(hwnd);
+			HPEN hPen = CreatePen(PS_SOLID, line_width, color);
+			HBRUSH hBrush = CreateSolidBrush(color);
+
+			SelectObject(hdc, hPen);
+			SelectObject(hdc, hBrush);
+
+			POINT points[] =
+			{
+				{start_x, start_y + get_side()},
+				{start_x + base, start_y + get_side()},
+				{start_x + base / 2, start_y + get_side() - get_height()},
+			};
+
+			Polygon(hdc, points, sizeof(points) / sizeof(POINT));
+
+			DeleteObject(hBrush);
+			DeleteObject(hPen);
+			ReleaseDC(hwnd, hdc);
+		}
+		void info()const
+		{
+			cout << typeid(*this).name() << endl;
+			cout << "Основание треугольника: " << get_base() << endl;
+			cout << "Сторона треугольника:   " << get_side() << endl;
+			cout << "Угол между основанием и стороной: " << get_base_angle() << endl;
+			cout << "Высота треугольника:   " << get_height() << endl;
+			Shape::info();
+		}
+	};
 }
 
 void main()
@@ -358,4 +441,7 @@ void main()
 	
 	Geometry::EquilateralTriangle qtri(150, 200, 200, 15, Geometry::Color::green);
 	qtri.info();
+
+	Geometry::IsoscalesTriangle isct(150, 77, 100, 100, 1, Geometry::Color::green);
+	isct.info();
 }
