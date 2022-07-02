@@ -32,14 +32,16 @@ namespace Geometry
 		max_start_y = 500,
 		min_line_width = 5,
 		max_line_width = 20,
+		min_line_length = 10,
+		max_line_length = 500,
 	};
 	class Shape
 	{
 	protected:
+		Color color;
 		int start_x;
 		int start_y;
 		unsigned int line_width;
-		Color color;
 	public:
 		Color get_color()const
 		{
@@ -223,7 +225,7 @@ namespace Geometry
 		}
 		void set_radius(double radius)
 		{
-			if (radius >= 10 && radius >= 500) this->radius = radius;
+			if (radius >= 10 && radius <= 500) this->radius = radius;
 			else if (radius < 10)this->radius = 10;
 			else this->radius = 500;
 		}
@@ -265,6 +267,77 @@ namespace Geometry
 			Shape::info();
 		}
 	};
+	class Triangle :public Shape
+	{
+	public:
+		Triangle(int start_x, int start_y, unsigned int line_width, Color color)
+			:Shape(start_x, start_y, line_width, color) {}
+		~Triangle(){}
+
+		virtual double get_height()const = 0;
+	};
+	class EquilateralTriangle :public Triangle
+	{
+		double side;
+	public:
+		double get_side()const
+		{
+			return side;
+		}
+		void set_side(double side)
+		{
+			if (side < Defaults::min_line_length)this->side = Defaults::min_line_length;
+			else if (side > Defaults::max_line_length)this->side = Defaults::max_line_length;
+			else this->side = side;
+		}
+		EquilateralTriangle(double side, int start_x, int start_y, unsigned int line_width, Color color) :
+			Triangle(start_x, start_y, line_width, color)
+		{
+			set_side(side);
+		}
+		~EquilateralTriangle() {}
+		double get_height()const
+		{
+			return sqrt(pow(side, 2) - pow(side / 2, 2));
+		}
+		double get_area()const
+		{
+			return  side * get_height() / 2;
+		}
+		double get_perimeter()const
+		{
+			return side * 3;
+		}
+		void draw()const
+		{
+			HWND hwnd = GetConsoleWindow();
+			HDC hdc = GetDC(hwnd);
+			HPEN hPen = CreatePen(PS_SOLID, line_width, color);
+			HBRUSH hBrush = CreateSolidBrush(color);
+
+			SelectObject(hdc, hPen);
+			SelectObject(hdc, hBrush);
+
+			POINT vertices[] =
+			{
+				{start_x, start_y + side},
+				{start_x + side, start_y + side},
+				{start_x + side / 2, start_y + side - get_height()}
+			};
+			Polygon(hdc, vertices, sizeof(vertices) / sizeof(POINT));
+
+			DeleteObject(hBrush);
+			DeleteObject(hPen);
+			ReleaseDC(hwnd, hdc);
+		}
+		void info()const
+		{
+			cout << typeid(*this).name() << endl;
+			cout << "Длина стороны: " << get_side() << endl;
+			cout << "Высота: " << get_height() << endl;
+			Shape::info();
+		}
+	};
 }
 
 void main()
@@ -283,4 +356,6 @@ void main()
 	Geometry::Circle circle(50, 10, 50, 15, Geometry::Color::yellow);
 	circle.info();
 	
+	Geometry::EquilateralTriangle qtri(150, 200, 200, 15, Geometry::Color::green);
+	qtri.info();
 }
